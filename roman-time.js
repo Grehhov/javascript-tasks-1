@@ -3,21 +3,19 @@ var minutes = process.argv[3];
 
 // Немного замечательного кода и магии
 
-if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59)
-{
+if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
 	console.log('Время указано неверно');
+	return;
 }
-else
-{
-	timeRoman = numberToRoman(hours) + ':' + numberToRoman(minutes);
+else {
+	var timeRoman = numberToRoman(hours) + ':' + numberToRoman(minutes);
 	printASCII(timeRoman);
 }
 
-function numberToRoman(number)
-{
-	numberRoman = '';
-	reverseListOfRomanNumber = [50, 40, 10, 9, 5, 4, 1];
-	dictOfRomanNumber = {
+function numberToRoman(number) {
+	var numberRoman = '';
+	var reverseListOfRomanNumber = [50, 40, 10, 9, 5, 4, 1];
+	var dictOfRomanNumber = {
 		1: 'I',
 		4: 'IV',
 		5: 'V',
@@ -27,29 +25,23 @@ function numberToRoman(number)
 		50: 'L'
 	};
 	
-	while (number != 0)
+	for (var i = 0; i < reverseListOfRomanNumber.length; i++)
 	{
-		for (var i = 0; i < reverseListOfRomanNumber.length; i++)
+		while (number >= reverseListOfRomanNumber[i])
 		{
-			if (number >= reverseListOfRomanNumber[i])
-			{
-				numberRoman += dictOfRomanNumber[reverseListOfRomanNumber[i]];
-				number -= reverseListOfRomanNumber[i];
-				break;
-			}
+			numberRoman += dictOfRomanNumber[reverseListOfRomanNumber[i]];
+			number -= reverseListOfRomanNumber[i];
 		}
 	}
 	
-	if (numberRoman == '')
-	{
+	if (numberRoman == '') {
 		return '-';
 	}
 	
 	return numberRoman;
 }
 
-function printASCII(time)
-{
+function printASCII(time) {
 	var symbolASCII = {
 		'I' : [ ' _  _  _  _  _ ',
 				'(_)(_)(_)(_)(_)',
@@ -106,12 +98,10 @@ function printASCII(time)
 				'               ']
 		}
 		
-		str = '';
+		var str = '';
 		
-		for (var j = 0; j < 8; j++)
-		{
-			for (var i = 0; i < time.length; i++)
-			{
+		for (var j = 0; j < 8; j++) {
+			for (var i = 0; i < time.length; i++) {
 				str += symbolASCII[time[i]][j] + ' ';
 			}
 			console.log(str);
