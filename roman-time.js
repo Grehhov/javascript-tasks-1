@@ -1,5 +1,5 @@
-var hours = process.argv[2];
-var minutes = process.argv[3];
+var hours = Number(process.argv[2]);
+var minutes = Number(process.argv[3]);
 
 // Немного замечательного кода и магии
 
@@ -34,7 +34,7 @@ function numberToRoman(number) {
 		}
 	}
 	
-	if (numberRoman == '') {
+	if (numberRoman === '') {
 		return '-';
 	}
 	
